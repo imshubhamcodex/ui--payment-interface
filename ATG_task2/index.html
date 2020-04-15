@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Payment</title>
+</head>
+<body>
+
+	<!-- Button trigger modal -->
+<button id="launch" type="button" style="top:50%;left:50%;position: absolute;transform: translate(-50%,-50%);" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch 
+</button>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalCenterTitle" style="font-family:  Bahnschrift;"><b><span onclick="changenav()" aria-hidden="true" style="margin-right: 25px;zoom:1.3;cursor: pointer;">&times;</span>Event Type<b></h5>
+	         <button id="add-btn" onclick="add()" >+ Category</button>
+	        
+	      </div> 
+	      <div class="modal-body" id="app" style="overflow-y: auto;">
+	      	<div id="event-type" style="width: 100%;">
+	      		<h4 id="head" style="margin-left: 50px; font-weight: 400; font-family:  Bahnschrift;">Paid-event or Free-event?</h4>
+	      		<ul style="margin: 20px auto; text-align: center; padding-left: 0px;">
+	      			<li style="display: inline-block;">
+	      				<div id="p-div" style="height: 100px;width:170px; border-radius: 4px; border:1px solid #ddd;margin-right: 10px; position: relative;">
+	      					<img src="img/p.png" id="p-img" style="position: absolute;top:50%;left:50%;transform:translate(-50% ,-50%);width: 130px;">
+	      					<input id="p-radio" type="radio" name="btn" style="position:absolute; top:5%;left:90%;">
+	      				</div>
+	      			</li>
+	      			<li style="display: inline-block;" >
+	      				<div id="f-div" style="height: 100px;width: 170px;  border-radius: 4px; border:1px solid #ddd;position: relative;">
+	      					<img src="img/f.png" id="f-img" style="position: absolute;top:50%;left:50%;transform:translate(-50% ,-50%); width: 130px;">
+	      					<input id="f-radio" type="radio" name="btn" style="position:absolute; top:5%;left:90%;">
+	      				</div>
+	      			</li>
+	      		</ul>
+	      	</div>
+
+	      	<div id="single-div">
+	      		<ul style="list-style: none;">
+		      		<li style="margin-bottom: 20px;" >
+		      			<h4 style="font-family:  Bahnschrift;">Price of ticket?</h4>
+		      			<div class="dropdown show" style="display: inline;">
+									  <a id="single-price-logo" class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgb(221,221,221,0.7); height:40px;margin-bottom:5px; color:black;border:0;outline:0;">
+									   <b>₹</b>
+									  </a>
+
+									  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									    <a class="dropdown-item" href="#">$</a>
+									    <a class="dropdown-item" href="#">£</a>
+									    <a class="dropdown-item" href="#">€</a>
+									  </div>
+						</div>
+						<input id="price-single" type="text" name="price" placeholder="Price per ticket">
+		      		</li>
+		      		<li>
+		      			<h4 style="font-family:  Bahnschrift;">Availability?</h4>
+		      			<div id="online" style="height: 40px;width:150px; border-radius: 4px; border:1px solid #ddd;margin-right: 10px; position: relative; margin-right:0; float:left;cursor: pointer;">
+		      				<input id="on-radio" type="radio" name="same" style="margin-top: 12px; margin-left: 10px;"> <span id="on" style="position: absolute; top:50%; transform:translate(20%,-50%); font-weight: 600;font-family:  Bahnschrift;cursor: pointer;">Online</span>
+		      			</div>
+		      			<div id="offline" style="height: 40px;width:150px; border-radius: 4px; border:1px solid #ddd;margin-right: 10px; position: relative; margin-right: 0; float:right;margin-right: 100px;cursor: pointer;">
+		      				<input id="off-radio" type="radio" name="same" style="margin-top: 12px; margin-left: 10px;"> <span id="off" style="position: absolute; top:50%; transform:translate(20%,-50%); font-weight: 600; font-family:  Bahnschrift; cursor: pointer;">Offline</span>
+		      			</div>
+		      		</li>
+		      	</ul>
+	      	</div>
+
+
+	      	<ul id="data-list" >
+
+	      		<li class="item-class" id="field" style="display:none;"><b><span id="span-field" class="span-class"></span>1.</b><span style="float:right; margin-right:5px;"><i class="fa fa-chevron-up" aria-hidden="true" style="display:none;"></i></span>
+				<div class="demo-box" style="display:block;">
+					<div class="detail-box">
+						<ul>
+							<li>
+								<h4>Category?</h4>
+								<input type="text" id="catValue" name="cat" placeholder="Example: Entry, food or parking etc.">
+							</li>
+							<li>
+								<h4>Description</h4>
+								<textarea id="text-field"  name="" placeholder="Description"></textarea>
+							</li>
+							<li>
+								<h4>Ticket price for this category?</h4>
+								<div class="dropdown show" style="display: inline;">
+								  <a id="r-btn" class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgb(221,221,221,0.7); height:40px;margin-bottom:5px; color:black;border:0;outline:0;">
+								   <b>₹</b>
+								  </a>
+
+								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								    	<a class="dropdown-item" href="#">$</a>
+									    <a class="dropdown-item" href="#">£</a>
+									    <a class="dropdown-item" href="#">€</a>
+								  </div>
+								</div>
+								<input id="price-field" type="text" name="price" placeholder="Price per ticket">
+							</li>
+						</ul>
+					</div>	
+				</div>
+			</li>
+
+
+	      	</ul>
+
+	      </div>
+	      <div class="modal-footer">
+	      	<h4 id="money-calc" style="float: left; width: 80%;"><b>Total Cost: ₹ <span id="money">0</span> </b></h4>
+	        <button id="close-btn" style="display: none;" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button id="next-btn" type="button" class="btn btn-primary" disabled >Next →</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
+	<script src="js/script.js"></script>
+	<script>
+		var count = 0;
+		 var dismiss = 0;
+
+
+		 function add(){
+
+		 	if(document.getElementById('field').style.display == 'block'){
+
+		 	var regex = /[0-9]/;
+		 	if(regex.test(document.getElementById('price-field').value))
+		 	{
+
+
+
+
+		 	var catval = document.getElementById('catValue').value;
+		 	var desval = document.getElementById('text-field').value;
+		 	var priceval =document.getElementById('price-field').value;
+
+		 	let id = "demo"+count.toString();
+			var newEle = `
+			<li class="item-class" id="li${count}"><b><span id="span${count}" class="span-class"> </span></b><span onclick="closebox(${count})" style="float:right; margin-right:5px;"><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
+				<div class="demo-box" id=${id} style="display:block;">
+					<div class="detail-box">
+						<ul>
+							<li>
+								<h4>Category?<span id="remove${count}" onclick="removeItem(${count})"><i style="float:right; cursor:pointer;" class="fa fa-minus-circle" aria-hidden="true"><em style="margin-left:3px;"> Remove</em></i></span></h4>
+								<input type="text" onkeydown="myFunction1(event)" name="cat" id="cat${count}" placeholder="Example: Entry, food or parking etc." value="${catval}">
+							</li>
+							<li>
+								<h4>Description</h4>
+								<textarea id="text${count}" name="" placeholder="Description" >${desval}</textarea>
+							</li>
+							<li>
+								<h4>Ticket price for this category?</h4>
+								<div class="dropdown show" style="display: inline;">
+								  <a id="pricelogo${count}" class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgb(221,221,221,0.7); height:40px;margin-bottom:5px; color:black;border:0;outline:0;">
+								   <b>₹</b>
+								  </a>
+
+								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								    	<a class="dropdown-item" href="#">$</a>
+									    <a class="dropdown-item" href="#">£</a>
+									    <a class="dropdown-item" href="#">€</a>
+								  </div>
+								</div>
+								<input class="price-class" id="price${count}" type="" value=${priceval} name="price" placeholder="Price per ticket">
+							</li>
+						</ul>
+					</div>	
+				</div>
+				<hr id="hr${count}" style="border-top: 1px solid rgba(221,221,221,1); display:none;" >
+			</li>
+			
+			`
+			document.getElementById('field').remove();
+			document.getElementById('data-list').innerHTML+= newEle;
+			count++;
+
+			document.getElementById('data-list').innerHTML+= `
+
+				<li class="item-class" id="field" style="display:block;"><b><span id="span-field" class="span-class"></span>${count+1}</b><span style="float:right; margin-right:5px;"><i class="fa fa-chevron-up" aria-hidden="true" style="display:none;"></i></span>
+				<div class="demo-box" style="display:block;">
+					<div class="detail-box">
+						<ul>
+							<li>
+								<h4>Category?<span onclick="hide()"><i style="float:right; cursor:pointer;" class="fa fa-minus-circle" aria-hidden="true"><em style="margin-left:3px;"> Remove</em></i></span></h4>
+								<input type="text" id="catValue" name="cat" placeholder="Example: Entry, food or parking etc.">
+							</li>
+							<li>
+								<h4>Description</h4>
+								<textarea id="text-field"  name="" placeholder="Description"></textarea>
+							</li>
+							<li>
+								<h4>Ticket price for this category?</h4>
+								<div class="dropdown show" style="display: inline;">
+								  <a id="r-btn" class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgb(221,221,221,0.7); height:40px;margin-bottom:5px; color:black;border:0;outline:0;">
+								   <b>₹</b>
+								  </a>
+
+								  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								    	<a class="dropdown-item" href="#">$</a>
+									    <a class="dropdown-item" href="#">£</a>
+									    <a class="dropdown-item" href="#">€</a>
+								  </div>
+								</div>
+								<input id="price-field" type="text" name="price" placeholder="Price per ticket">
+							</li>
+						</ul>
+					</div>	
+				</div>
+			</li>
+
+			`
+				closebox(count-1);
+
+				}
+				else{
+					document.getElementById('price-field').style.border="1px solid red";
+					document.getElementById('r-btn').style.border="1px solid red";
+					document.getElementById('price-field').classList+=" Red";
+
+				}
+
+
+			}
+			else{
+
+				document.getElementById('field').style.display = 'block';
+			}
+
+			
+			
+		 }
+
+		 function hide(){
+		 	document.getElementById('field').style.display = 'none';
+		 	
+		 	
+		 }
+
+
+		 function closebox(val){
+
+			if(document.getElementById('demo'+val.toString()).style.display == 'block'){
+				document.getElementById('demo'+val.toString()).style.display = 'none';
+				document.getElementById('hr'+val.toString()).style.display = 'block';
+				let cat = document.getElementById('cat'+val.toString()).value;
+				let price = document.getElementById('price'+val.toString()).value;
+					document.getElementById('span'+val.toString()).textContent = (val+1).toString()+". " + cat +":  ₹"+price;
+
+				document.getElementById('li'+val.toString()).children[1].children[0].className="fa fa-chevron-down";
+
+
+				
+			}
+			else{
+				document.getElementById('demo'+val.toString()).style.display = 'block';
+				document.getElementById('li'+val.toString()).children[1].children[0].className="fa fa-chevron-up";
+				document.getElementById('hr'+val.toString()).style.display = 'none';
+
+			}
+
+			var total = 0;
+			let allItem = document.getElementsByClassName("price-class");
+			Array.from(allItem).forEach( function(element, index) {
+					 total = parseInt(element.value) + parseInt(total); 
+					console.log(total);
+					console.log(typeof(total))
+			});
+			document.getElementById('money').textContent = total.toString();
+		}
+
+
+		function removeItem(i)
+		{	
+			var num_of_ele = 0;
+			document.getElementById('li'+i.toString()).remove();
+			let allItem = document.getElementsByClassName("item-class");
+			Array.from(allItem).forEach( function(element, index) {
+					var x = element.children[0].children[0].textContent;
+					element.children[0].children[0].textContent = (index + 1).toString()+ ". "+x.substring(3,x.length);
+
+					 num_of_ele++; 
+
+			});
+
+			if( num_of_ele == 1)
+				count=0;
+
+
+			var total = 0;
+			let allitem = document.getElementsByClassName("price-class");
+			Array.from(allitem).forEach( function(element, index) {
+					 total = parseInt(element.value) + parseInt(total); 
+					console.log(total);
+					console.log(typeof(total))
+			});
+			document.getElementById('money').textContent = total.toString();
+
+		}
+
+
+	</script>
+</body>
+</html>
